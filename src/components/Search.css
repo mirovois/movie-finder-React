@@ -1,0 +1,9 @@
+form {
+  margin: 1rem;
+}
+input {
+  margin-right: 1rem;
+  border-radius: 4px;
+  /* border: outset; */
+  border: 2px solid gray;
+}
