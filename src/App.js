@@ -3,7 +3,8 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import Watchlist from './components/Watchlist';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {GlobalProvider} from './context/GlobalContext'
  
  function App() {
   // useEffect(() => {
@@ -28,22 +29,24 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
   //   setQuery("");
   // }
 
-  return (
-    <BrowserRouter>
-      <div className="app">
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />         
-          </Route>
-          <Route exact path="/watchlist">
-            <Watchlist />         
-          </Route>
-        </Switch>
 
-      </div>
-    
-    </BrowserRouter>
+
+  return (
+    <GlobalProvider>
+      <BrowserRouter>
+        <div className="app">
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home />         
+            </Route>
+            <Route exact path="/watchlist">
+              <Watchlist />         
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
 

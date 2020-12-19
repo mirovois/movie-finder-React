@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Movie from './Movie1';
+import YouTube from 'react-youtube';
 
 function Home() {
-    const [isLoading, setIsLoading] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
    const [URL,setURL] = useState(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
    const [isError, setIsError] = useState(false);
    const [movies, setMovies] = useState([]);
    const [query, setQuery] = useState('');
+  //  const [trailerUrl, setTrailerUrl] = useState('');
    
     useEffect(() =>{
       const fetchData = async() =>{
@@ -25,6 +27,15 @@ function Home() {
       };
       fetchData()
     },[URL]);
+
+      // const opts = {
+      //   height:"390",
+      //   width:"100%",
+      //   playerVars:{
+      //     // https://developers.google.com/youtube/player_parameters
+      //     autoplay:1
+      //   }
+      // }
 
     const callSearch = (e) =>{
       e.preventDefault();
@@ -47,10 +58,12 @@ function Home() {
       <div className="movie__container">
       {movies.length>0 &&
         movies.map(movie =>
-          <Movie key={movie.id} {...movie}/>
+          <Movie key={movie.id} {...movie} />
       )}
       </div>
       }
+      {/* {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>
+      } */}
         </div>
     )
 }

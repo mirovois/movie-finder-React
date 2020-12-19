@@ -30,3 +30,19 @@ li {
   text-decoration: none;
   list-style: none;
 }
+.header__link {
+  color: rgb(102, 75, 42);
+  margin-right: 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+}
+.header__link:hover {
+  color: rgb(157, 173, 173);
+}
+.active__link {
+  color: wheat;
+}
+
+.watchlist__count {
+  color: rgb(139, 153, 165);
+}
