@@ -3,7 +3,8 @@ import AppReducer from './AppReducer';
 
 // initial state
 const initialState = {
-    watchlist:localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')) : []
+    watchlist:localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')) : [],
+    isModalOpen:false,
 };
 
 // create context
@@ -13,6 +14,7 @@ export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = (props) =>{
     const [state, dispatch] = useReducer(AppReducer, initialState);
+
 
     useEffect(() =>{
         localStorage.setItem('watchlist', JSON.stringify(state.watchlist));
@@ -25,9 +27,22 @@ export const GlobalProvider = (props) =>{
     const removeMovieFromWatchList = id =>{
         dispatch({type:"REMOVE_MOVIE_FROM_WATCH_LIST", payload:id})
     }
+    const closeModal = () =>{
+        dispatch({type:"CLOSE_MODAL"})
+    }
+    const openModal = () =>{
+        dispatch({type:"OPEN_MODAL"})
+    }
+
+    // const openModal = () =>{
+    //     setIsModalOpen(true)
+    // }
+    // const closeModal = () =>{
+    //     setIsModalOpen(false)
+    // }
 
     return (
-        <GlobalContext.Provider value={{watchlist:state.watchlist,addMovieToWatchlist,removeMovieFromWatchList}}>
+        <GlobalContext.Provider value={{watchlist:state.watchlist,isModalOpen:state.isModalOpen, addMovieToWatchlist,removeMovieFromWatchList,openModal,closeModal}}>
             {props.children}
         </GlobalContext.Provider>
     )

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Movie from './Movie1';
 import YouTube from 'react-youtube';
+import './Home.css'
 
 function Home() {
    const [isLoading, setIsLoading] = useState(false);
@@ -43,13 +44,13 @@ function Home() {
       setQuery('');
     };
     return (
-        <div>
+        <div class="movie__container">
             <form>
-              <input type="text" id="search" placeholder="Search a movie" 
+              <input type="text" id="search" placeholder="Search a movie..." 
               value={query}
               onChange={e =>setQuery(e.target.value)}
               />
-              <button type="submit" onClick={callSearch}>Search</button>
+              <button className="btn__search" type="submit" onClick={callSearch}>GO</button>
             </form>
       {isError && <div>Oops! Error has occured</div>}
 
@@ -62,8 +63,6 @@ function Home() {
       )}
       </div>
       }
-      {/* {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>
-      } */}
         </div>
     )
 }

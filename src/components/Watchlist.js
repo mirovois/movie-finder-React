@@ -16,7 +16,7 @@ function Watchlist() {
                 )}
             </div>) 
             : (
-                <h2>There is no movies in</h2>
+                <h2>There is no movies in watchlist</h2>
             )}
         </div>
     )

@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Watchlist from './components/Watchlist';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {GlobalProvider} from './context/GlobalContext'
+import SingleMovie from './components/SingleMovie';
  
  function App() {
   // useEffect(() => {
@@ -42,6 +43,9 @@ import {GlobalProvider} from './context/GlobalContext'
             </Route>
             <Route exact path="/watchlist">
               <Watchlist />         
+            </Route>
+            <Route exact path='/movie/:id'>
+              <SingleMovie />
             </Route>
           </Switch>
         </div>

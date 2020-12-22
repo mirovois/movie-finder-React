@@ -1,4 +1,6 @@
 import React, {useContext} from 'react';
+import { FaExternalLinkAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import {GlobalContext} from '../context/GlobalContext';
 import './Movie.css';
 
@@ -15,7 +17,7 @@ const setClassVote = (vote) =>{
 }
 
 function WatchlistCard(props) {
-    const{poster_path, vote_average,original_title,id} = props.movie;
+    const{poster_path, vote_average,original_title,id} = {...props.movie};
 
     const {removeMovieFromWatchList} = useContext(GlobalContext);
     return (
@@ -24,6 +26,9 @@ function WatchlistCard(props) {
                 <img src={poster_path ? (IMG_API + poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={original_title}/>
                 <div className="movie__info">
                     <h4>{original_title}</h4>
+                    <Link className="movie__link" to={`/movie/${id}`} movie={props.movie} >
+                      <FaExternalLinkAlt />
+                    </Link>
                     <span className={`movie__average ${setClassVote(vote_average)}`}>{vote_average}</span>
                 </div>
                 {/* <div className="movie__overview">

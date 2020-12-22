@@ -14,6 +14,16 @@ export default (state, action) => {
                 ...state,
                 watchlist:state.watchlist.filter(movie =>movie.id !== action.payload)
             }
+        case "OPEN_MODAL":
+            return {
+                ...state,
+                isModalOpen:!state.isModalOpen   
+            }
+            case "CLOSE_MODAL":
+            return {
+                ...state,
+                isModalOpen:!state.isModalOpen   
+            }
         default:
             return state;
     }

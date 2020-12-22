@@ -1,12 +1,12 @@
 .movie {
   position: relative;
-  width: 150px;
-  height: 280px;
+  width: 185px;
+  height: 290px;
   padding: 0.5rem;
-  background-color: rgb(101, 121, 180);
+  background-color: var(--clr-card-bgr);
   border-radius: 5px;
   margin: 1rem;
-  box-shadow: 3px, 3px, 8px, rgba(0, 0, 0, 0.8);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -26,23 +26,35 @@
 #search:active {
   outline: none;
 }
-button {
-  display: none;
+.btn__search {
+  cursor: pointer;
+  margin-left: 1rem;
+  color: rgb(56, 50, 50);
+  letter-spacing: 0.1rem;
+  background: rgb(179, 158, 158);
+  border: 2px solid rgb(121, 87, 87);
+  padding: 0.4rem 1rem;
+  border-radius: 0.25rem;
 }
 .movie img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  cursor: pointer;
 }
 .movie__info {
   display: flex;
   justify-content: space-between;
   justify-self: self-start;
+  align-items: center;
 }
 .movie__info h4 {
   margin: 0;
   text-align: left;
   margin-right: 0.5rem;
+  font-family: var(--card-titles);
+  font-size: var(--card-title-size);
+  letter-spacing: var(--title-spacing);
 }
 .movie__overview {
   position: absolute;
@@ -62,6 +74,14 @@ button {
   transform: translateY(0);
 }
 .movie__average {
+  position: absolute;
+  background: hsl(204, 60%, 81%);
+  border-radius: 0.25rem;
+  right: 12px;
+  top: 177px;
+  padding: 2px;
+  width: 25px;
+  font-weight: 700;
 }
 .green {
   color: chartreuse;
@@ -75,17 +95,27 @@ button {
 
 .btn__add,
 .btn__remove {
-  display: block;
+  /* display: block;
   cursor: pointer;
-  background: #70718d;
+  background: #707060;
   outline: none;
   text-transform: uppercase;
   color: rgb(146, 190, 192);
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding: 0.2rem 0.4rem;
   border-radius: 5px;
-  background-color: rgba(51, 51, 51, 0.7);
+  background-color: rgba(51, 51, 51, 0.7); */
+  display: block;
+  cursor: pointer;
+  width: 90%;
+  margin: 1rem auto 0.5rem auto;
+  color: rgb(131, 77, 77);
+  letter-spacing: 0.1rem;
+  background: transparent;
+  border: 2px solid rgb(121, 87, 87);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 }
 .btn__add:hover,
 .btn__remove:hover {
@@ -94,6 +124,27 @@ button {
   transition: all 0.2s;
 }
 .btn__add:disabled {
+  transition: none;
+  background-color: inherit;
+  color: inherit;
+}
+.btn__add:disabled {
   opacity: 0.5;
   cursor: unset;
+}
+.btn__extend {
+  display: block;
+  cursor: pointer;
+}
+.btn__expand {
+  display: block;
+}
+.movie__link {
+  color: rgb(114, 91, 91);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.2rem;
+}
+.movie__link:hover {
+  color: rgb(88, 71, 71);
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import {NavLink} from 'react-router-dom';
 import {GlobalContext} from '../context/GlobalContext';
+import { BiCameraMovie } from 'react-icons/bi';
 import "./Header.css"
 
 const Header = (props) => {
@@ -12,7 +13,7 @@ const Header = (props) => {
     const{watchlist} = useContext(GlobalContext);
     return (
         <header>
-            <h2>Find Movie</h2>
+            <h2 className="header__title">MovieApp</h2>
             <nav>
                 <ul>
                     {links.map(link =>
@@ -21,7 +22,11 @@ const Header = (props) => {
                         </NavLink> )
                     )}
                     {watchlist.length>0 ? (
-                        <span className="watchlist__count">{watchlist.length}</span>
+                        <div className="counter__container">
+                            <BiCameraMovie className="counter__icon"/>
+                            <span className="watchlist__count">{watchlist.length}</span>
+
+                        </div>
                     ) : ""}
                 </ul>
             </nav>

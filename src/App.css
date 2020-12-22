@@ -1,3 +1,14 @@
+:root {
+  --transition: all 0.3s linear;
+  /* colors */
+  --page-bgr: rgb(240, 237, 228);
+  --clr-card-bgr: rgb(214, 214, 212);
+  /* fonts */
+  --card-titles: "Archivo Narrow", sans-serif;
+  --card-title-size: 18px;
+  /* spacing */
+  --title-spacing: 1.6px;
+}
 .app {
   text-align: center;
 }
