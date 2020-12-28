@@ -1,7 +1,9 @@
 .main__wrapper {
-  min-height: 90vh;
+  min-height: 100vh;
   display: grid;
   place-content: center;
+  /* padding-top: 1rem; */
+  /* margin-top: 3rem; */
   padding-left: 10%;
   padding-right: 10%;
   background-color: rgb(240, 237, 228);
@@ -9,13 +11,19 @@
 .single__movie {
   max-width: 420px;
   background: rgb(214, 214, 212);
-
   border-radius: 0.25;
-  margin: 1rem auto;
+  margin: 4rem auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
   transition: all 0.3s linear;
 }
-
+.movie__rating {
+  background: hsl(204, 60%, 81%);
+  border-radius: 0.25rem;
+  padding: 1px;
+  width: 35px;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
 .single__movie img {
   width: 100%;
   max-height: 16rem;
@@ -51,16 +59,41 @@ footer p {
   text-align: justify;
   font-size: 0.8rem;
 }
+.action__section {
+  display: flex;
+  justify-content: space-between;
+}
 
-.btn__action {
-  display: block;
-  width: 200px;
-  margin: 1rem auto 0.5rem auto;
-  color: hsl(360, 67%, 44%);
+.btn__addList {
+  margin: 0.5rem auto;
+  color: rgb(131, 77, 77);
   letter-spacing: 0.1rem;
   background: transparent;
   border: 2px solid rgb(121, 87, 87);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+.btn__addList:disabled {
+  transition: none;
+  background-color: inherit;
+  color: inherit;
+  opacity: 0.5;
+  cursor: unset;
+}
+.btn__watch {
+  margin: 0.5rem auto;
+  color: rgb(131, 77, 77);
+  letter-spacing: 0.1rem;
+  background: transparent;
+  border: 2px solid rgb(121, 87, 87);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trailer__icon {
+  margin-left: 0.5rem;
 }

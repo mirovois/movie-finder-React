@@ -1,7 +1,11 @@
 import React, {useEffect,useState} from 'react';
 import {useParams} from 'react-router-dom';
+import movieTrailer from 'movie-trailer';
 import { useContext } from 'react';
 import {GlobalContext} from '../context/GlobalContext';
+import Modal from './Modal';
+import { BsCameraVideoFill } from "react-icons/bs";
+import Loading from './Loading';
 import './SingleMovie.css';
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
@@ -24,15 +28,16 @@ function SingleMovie() {
     
     
     const[readMore, setReadMore] = useState(false);
-    const[loading, setLoading] = useState(false);
+    const[isLoading, setIsLoading] = useState(false);
     const[movie, setMovie] = useState('');
+    const [trailerUrl, setTrailerUrl] = useState('');
     
     let storeMovie = watchlist.find(object => object.id === movie.id);
     const buttonDisabled = storeMovie ? true : false;
-    const buttonName = storeMovie ? "Added To Watchlist" : "Add to Watchlist";
+    const buttonName = storeMovie ? "Added To Watchlist" : "Add to Watchlist +";
 
     useEffect(() =>{
-        // setLoading(true);
+        setIsLoading(true);
         const getMovie = async() =>{
             try{
                 const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
@@ -43,37 +48,58 @@ function SingleMovie() {
             catch(error){
                 console.log(error);
             }
+            setIsLoading(false);
         };
         getMovie()
     },[id])
 
-    if(!movie) {
-        return <h2>There is no movie for displaying</h2>
-    }
-
-    return (
-        <divm className="main__wrapper">
-            <article className="single__movie">
-                {/* <h2>{movie.original_title}</h2> */}
-               
-                    <img src={movie.poster_path ? (IMG_API + movie.poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={movie.original_title} />
+    const handleClick = (mov) =>{
+        if (trailerUrl) {
+            setTrailerUrl('');
+        } else {
+            movieTrailer(mov || "")
+                .then(url => {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    setTrailerUrl(urlParams.get('v'));
+                    openModal();
                 
+                })
+                .catch((error) => console.log(error))
+        }
+    }
+    return (
+        <div className="main__wrapper">
+            {isLoading ? <Loading /> :
+            (
+
+            <article className="single__movie">               
+                    <img src={movie.poster_path ? (IMG_API + movie.poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={movie.original_title} />
                 <footer>
                     <div className="single-movie__info">
                     <h4>{movie.original_title}</h4>
-                    <h4 className={`movie__rating ${setClassVote(movie.vote_average)}`}>${movie.vote_average}</h4>
+                    <h4 className={`movie__rating ${setClassVote(movie.vote_average)}`}>{movie.vote_average}</h4>
                     </div>
                     <hr/>
                     <p>{movie.overview}</p>
-            <button className="btn__action"  disabled={buttonDisabled} onClick={
-                    () => addMovieToWatchlist(movie)
-                }>
-            {buttonName}
-            </button>
-                </footer>
-        </article>
+                    <div className="action__section">
+                        <button className="btn__addList"  disabled={buttonDisabled} onClick={
+                                () => addMovieToWatchlist(movie)
+                            }>
+                        {buttonName}
+                        </button>
+                        <button className="btn__watch" onClick={() =>handleClick(movie.original_title)}>
+                            
+                            <span>Watch trailer</span>
+                            <span className="trailer__icon"><BsCameraVideoFill /></span>
+                            </button>
 
-        </divm>
+                    </div>
+                </footer>
+        { trailerUrl && 
+        <Modal title={movie.original_title} trailer={trailerUrl} setUrl={setTrailerUrl}/>}
+        </article>
+            )}
+        </div>
     )
 }
 

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { useContext } from 'react';
 import {GlobalContext} from '../context/GlobalContext';
-import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 import "./Movie.css";
 import Modal from './Modal';
@@ -32,7 +31,7 @@ function Movie1({...movie}) {
     let storeMovie = watchlist.find(object => object.id === movie.id);
 
     const buttonDisabled = storeMovie ? true : false;
-    const buttonName = storeMovie ? "Added To Watchlist" : "Add to Watchlist";
+    const buttonName = storeMovie ? "Added To Watchlist" : "Add to Watchlist +";
     const titleExpandable = original_title.length>17 ? true : false
 
    

@@ -1,6 +1,8 @@
-.movie__container {
+form {
+  margin-top: 3rem;
+}
+/* .movie__container {
+  margin-top: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
+} */

@@ -1,7 +1,7 @@
 .movie {
   position: relative;
   width: 185px;
-  height: 290px;
+  height: 310px;
   padding: 0.5rem;
   background-color: var(--clr-card-bgr);
   border-radius: 5px;
@@ -95,17 +95,6 @@
 
 .btn__add,
 .btn__remove {
-  /* display: block;
-  cursor: pointer;
-  background: #707060;
-  outline: none;
-  text-transform: uppercase;
-  color: rgb(146, 190, 192);
-  font-weight: bold;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: 5px;
-  background-color: rgba(51, 51, 51, 0.7); */
   display: block;
   cursor: pointer;
   width: 90%;
@@ -127,11 +116,10 @@
   transition: none;
   background-color: inherit;
   color: inherit;
-}
-.btn__add:disabled {
   opacity: 0.5;
   cursor: unset;
 }
+
 .btn__extend {
   display: block;
   cursor: pointer;

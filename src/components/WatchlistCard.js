@@ -31,9 +31,6 @@ function WatchlistCard(props) {
                     </Link>
                     <span className={`movie__average ${setClassVote(vote_average)}`}>{vote_average}</span>
                 </div>
-                {/* <div className="movie__overview">
-                    <p>{overview}</p>
-                </div> */}
                 <button className="btn__remove" onClick={() => removeMovieFromWatchList(id)}>Remove</button>
             </div>
         </div>

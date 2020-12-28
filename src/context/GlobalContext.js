@@ -5,6 +5,7 @@ import AppReducer from './AppReducer';
 const initialState = {
     watchlist:localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')) : [],
     isModalOpen:false,
+    isLoading:false
 };
 
 // create context
@@ -34,15 +35,9 @@ export const GlobalProvider = (props) =>{
         dispatch({type:"OPEN_MODAL"})
     }
 
-    // const openModal = () =>{
-    //     setIsModalOpen(true)
-    // }
-    // const closeModal = () =>{
-    //     setIsModalOpen(false)
-    // }
 
     return (
-        <GlobalContext.Provider value={{watchlist:state.watchlist,isModalOpen:state.isModalOpen, addMovieToWatchlist,removeMovieFromWatchList,openModal,closeModal}}>
+        <GlobalContext.Provider value={{watchlist:state.watchlist,isModalOpen:state.isModalOpen, isLoading:state.isLoading, addMovieToWatchlist,removeMovieFromWatchList,openModal,closeModal}}>
             {props.children}
         </GlobalContext.Provider>
     )

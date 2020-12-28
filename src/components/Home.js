@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Movie from './Movie1';
-import YouTube from 'react-youtube';
-import './Home.css'
+import Loading from './Loading';
+import './Home.css';
 
 function Home() {
+  //  const {isLoading} = useContext(GlobalContext);
+
    const [isLoading, setIsLoading] = useState(false);
    const [URL,setURL] = useState(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
    const [isError, setIsError] = useState(false);
@@ -29,14 +31,6 @@ function Home() {
       fetchData()
     },[URL]);
 
-      // const opts = {
-      //   height:"390",
-      //   width:"100%",
-      //   playerVars:{
-      //     // https://developers.google.com/youtube/player_parameters
-      //     autoplay:1
-      //   }
-      // }
 
     const callSearch = (e) =>{
       e.preventDefault();
@@ -44,8 +38,8 @@ function Home() {
       setQuery('');
     };
     return (
-        <div class="movie__container">
-            <form>
+        <div className="movie__wrapper" >
+            <form style={{marginTop:"3rem"}}>
               <input type="text" id="search" placeholder="Search a movie..." 
               value={query}
               onChange={e =>setQuery(e.target.value)}
@@ -54,7 +48,7 @@ function Home() {
             </form>
       {isError && <div>Oops! Error has occured</div>}
 
-      {isLoading ? (<div>Loading...</div>) 
+      {isLoading ? (<Loading />) 
       : 
       <div className="movie__container">
       {movies.length>0 &&
@@ -67,4 +61,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;
