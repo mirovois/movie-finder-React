@@ -5,6 +5,9 @@ import { useContext } from 'react';
 import {GlobalContext} from '../context/GlobalContext';
 import Modal from './Modal';
 import { BsCameraVideoFill } from "react-icons/bs";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+// import '../../node_modules/react-lazy-load-image-component/src/effects/blur.css';
 import Loading from './Loading';
 import './SingleMovie.css';
 
@@ -72,8 +75,17 @@ function SingleMovie() {
             {isLoading ? <Loading /> :
             (
 
-            <article className="single__movie">               
-                    <img src={movie.poster_path ? (IMG_API + movie.poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={movie.original_title} />
+            <article className="single__movie"> 
+                    <div className="movie__image">
+                        <LazyLoadImage 
+                            effect="blur"
+                            src={movie.poster_path ? (IMG_API + movie.poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'}
+                            alt={movie.original_title}
+                            height="300px"
+                            width="300px"
+                        />
+                        {/* <img src={movie.poster_path ? (IMG_API + movie.poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={movie.original_title} /> */}
+                    </div>              
                 <footer>
                     <div className="single-movie__info">
                     <h4>{movie.original_title}</h4>

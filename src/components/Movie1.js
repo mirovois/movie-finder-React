@@ -5,6 +5,8 @@ import {GlobalContext} from '../context/GlobalContext';
 import movieTrailer from 'movie-trailer';
 import "./Movie.css";
 import Modal from './Modal';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 
@@ -54,8 +56,14 @@ function Movie1({...movie}) {
     return (
         <div className="movie__wrapper">
             <div className="movie">
-                <img src={poster_path ? (IMG_API + poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={original_title}
-                onClick={() => handleClick(original_title)}/>
+                <LazyLoadImage 
+                  effect="blur"
+                  src={poster_path ? (IMG_API + poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} 
+                  onClick={() => handleClick(original_title)}
+                  alt={original_title}
+                />
+                {/* <img src={poster_path ? (IMG_API + poster_path) : 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'} alt={original_title}
+                onClick={() => handleClick(original_title)}/> */}
                 <span className={`movie__average ${setClassVote(vote_average)}`}>{vote_average}</span>
                                   
                 <div className="movie__info">
